@@ -2,13 +2,6 @@ import pandas as pd
 
 pd.options.display.max_columns = 120
 
-def time_padding(time):
-    if len(time) < 4:
-        numMissing = 4 - len(time)
-        rv = "0" * numMissing + time
-        return rv
-
-
 def SAF_data_cleaner(file_path):
     """This function is used for cleaning the data coming from the stop and
     frisk data sets and returning a cleaned pandas dataframe
@@ -26,7 +19,7 @@ def SAF_data_cleaner(file_path):
     year = df["year"][0]
 
     if year >= 2010:
-        df["timestop"] = df["timestop"].apply(time_padding)
+        df["timestop"] = df["timestop"].str.zfill(4)  # Left pad with zeros
     if year <= 2004:
         df["timestop"] = df["timestop"].str.replace(":", "")
     if year == 2006:
@@ -46,3 +39,17 @@ def SAF_data_cleaner(file_path):
     return year, df
 
 
+
+def count_aggregator(file_regex, file_path=""):
+    """Come back to this when you can copy the code in
+
+    """
+    for filename in glob.glob("[0-9]*.csv"):
+        year, df = SAF_data_cleaner(["dayofweek"].size()
+
+        day_of_week_counts = df.groupby(["dayofweek"]).size()
+        hourly_counts = df.groupby(["hour"].size()
+        daily_counts = df.groupby(["datofyear"]).size()
+
+
+    return holder
