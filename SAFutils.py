@@ -35,7 +35,8 @@ def SAF_data_cleaner(file_path):
     df["month"] = df["datestop"].dt.month
     df["dayofweek"] = df["datestop"].dt.dayofweek
     df["weekofyear"] = df["datestop"].dt.weekofyear
-    
+    df["day"] = df["datestop"].dt.day    
+
     return year, df
 
 
@@ -44,11 +45,12 @@ def count_aggregator(file_regex, file_path=""):
     """Come back to this when you can copy the code in
 
     """
+    pass
     for filename in glob.glob("[0-9]*.csv"):
-        year, df = SAF_data_cleaner(["dayofweek"].size()
+        year, df = SAF_data_cleaner(["dayofweek"]).size()
 
         day_of_week_counts = df.groupby(["dayofweek"]).size()
-        hourly_counts = df.groupby(["hour"].size()
+        hourly_counts = df.groupby(["hour"]).size()
         daily_counts = df.groupby(["datofyear"]).size()
 
 
