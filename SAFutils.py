@@ -35,7 +35,12 @@ def SAF_data_cleaner(file_path):
     df["month"] = df["datestop"].dt.month
     df["dayofweek"] = df["datestop"].dt.dayofweek
     df["weekofyear"] = df["datestop"].dt.weekofyear
-    df["day"] = df["datestop"].dt.day    
+    df["day"] = df["datestop"].dt.day
+
+    df["used_force"] = np.where((df["pf_hands"] == "Y") | (df["pf_wall"] == "Y") | (df["pf_grnd"] == "Y") |
+                                (df["pf_drwep"] == "Y") | (df["pf_ptwep"] == "Y") | (df["pf_baton"] == "Y") | 
+                                (df["pf_hcuff"] == "Y") | (df["pf_pepsp"] == "Y") | (df["pf_other"] == "Y"), 1, 0)
+    df["arstmade"] = np.where(df["arstmade"] == "Y", 1, 0)
 
     return year, df
 
